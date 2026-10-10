@@ -1,19 +1,13 @@
-LOGISTICA L2 - PWA UNIVERSAL
+LOGISTICA L2 UNIVERSAL - CORREGIDO
 
-Archivos para subir directamente a la RAIZ del repositorio GitHub:
-- index.html
-- manifest.webmanifest
-- service-worker.js
-- .nojekyll
-- carpeta icons
+Corrección incluida:
+- La ventana “Instalar en iPhone / iPad” ahora permanece oculta al iniciar.
+- El botón Cerrar funciona correctamente.
+- También puede cerrarse tocando fuera del cuadro o con la tecla Esc.
+- Se incrementó la versión de caché del Service Worker para forzar la actualización.
 
-No usar GitHub Actions para esta primera puesta en marcha.
-Publicacion simple:
-Settings > Pages > Build and deployment > Source: Deploy from a branch > principal > /(root) > Save.
-
-Luego abre la URL de GitHub Pages:
-- iPhone/iPad: Safari > Compartir > Añadir a pantalla de inicio.
-- Android: Chrome > Instalar app / Añadir a pantalla de inicio.
-- Laptop: Chrome/Edge > Instalar aplicación.
-
-La app funciona offline después de cargarla al menos una vez y conserva el banco de 336 preguntas dentro de index.html.
+Para actualizar GitHub Pages:
+1. Sustituye index.html y service-worker.js por estos archivos corregidos.
+2. También puedes subir todos los archivos de esta carpeta y reemplazar los existentes.
+3. Espera 1-2 minutos a que GitHub Pages publique los cambios.
+4. Recarga la página. Si sigue mostrando la versión vieja, cierra la pestaña y vuelve a abrir la URL.
