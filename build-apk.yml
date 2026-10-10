@@ -2,9 +2,6 @@ name: Construir APK Logistica L2
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - principal
 
 jobs:
   build:
@@ -20,24 +17,27 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Configurar Android SDK
-        uses: android-actions/setup-android@v4
-        with:
-          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
-          log-accepted-android-sdk-licenses: 'false'
+      - name: Verificar Android SDK
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          which sdkmanager
+          sdkmanager --version
 
-      - name: Configurar Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.0.2'
+      - name: Instalar Android 34
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Verificar Gradle
-        run: gradle --version
+        run: |
+          gradle --version
 
       - name: Construir APK
-        run: gradle assembleDebug --stacktrace
+        run: |
+          gradle assembleDebug --stacktrace
 
-      - name: Preparar APK
+      - name: Renombrar APK
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Logistica_L2_Android.apk
           ls -lh Logistica_L2_Android.apk
